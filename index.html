@@ -1,16 +1,27 @@
-<header>
-    <h1>WEB-STUDIO</h1>
-    <nav class="gnav">
-        <ul class="menu">
-            <li><a href="">○○について</a></li>
-            <li><a href="">仕事</a></li>
-            <li><a href="">採用</a></li>
-            <li><a href="">お知らせ</a></li>
-            <li><a href="">お問い合わせ</a></li>
-        </ul>
-    </nav>
-</header>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+  <script type="text/javascript">
+    var now = new Date();
+    function LoadProc() {
+      var target = document.getElementById("DateTimeDisp");
 
-<main>
-    <p>こんにちは！</p>
-</main>
+      var Year = now.getFullYear();
+      var Month = now.getMonth()+1;
+      var Date = now.getDate();
+      var Hour = now.getHours();
+      var Min = now.getMinutes();
+      var Sec = now.getSeconds();
+
+      target.innerHTML = Year + "年" + Month + "月" + Date + "日" + Hour + ":" + Min + ":" + Sec;
+    }
+
+  </script>
+</head>
+<body onload="LoadProc();">
+現在の時刻:
+   <div id="DateTimeDisp"></div>
+</body>
+</html>
