@@ -1,27 +1,23 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="ja">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-  <script type="text/javascript">
-    var now = new Date();
-    function LoadProc() {
-      var target = document.getElementById("DateTimeDisp");
-
-      var Year = now.getFullYear();
-      var Month = now.getMonth()+1;
-      var Date = now.getDate();
-      var Hour = now.getHours();
-      var Min = now.getMinutes();
-      var Sec = now.getSeconds();
-
-      target.innerHTML = Year + "年" + Month + "月" + Date + "日" + Hour + ":" + Min + ":" + Sec;
-    }
-
-  </script>
+<meta charset="UTF-8">
+<title>Analog Clock</title>
+<link rel="stylesheet" href="styles.css">
+<script src='index.js'></script>
 </head>
-<body onload="LoadProc();">
-現在の時刻:
-   <div id="DateTimeDisp"></div>
+<body>
+<div class="container">
+  <h1>Analog clock</h1>
+  <div class="edge-clock">
+    <span class="clock-hour"></span>
+    <span class="clock-min"></span>
+    <span class="clock-sec"></span>
+    <span class="clock-12">12</span>
+    <span class="clock-3">3</span>
+    <span class="clock-6">6</span>
+    <span class="clock-9">9</span>
+  </div>
+</div>
 </body>
 </html>
