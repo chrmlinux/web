@@ -1,26 +1,50 @@
 <html>
-    <head>
-        <title>Piano in BabylonJS</title>
-        <script src="https://cdn.babylonjs.com/babylon.js"></script>
-        <script src="https://chrmlinux.github.io/web/scene.js"></script>
-        <style>
-            body,#renderCanvas { width: 100%; height: 100%;}
-        </style>
-    </head>
-    <body>
-        <canvas id="renderCanvas"></canvas>
-        <script type="text/javascript">
-            const canvas = document.getElementById("renderCanvas");
-            const engine = new BABYLON.Engine(canvas, true); 
+<head>
+    <title>textrain</title>
+    <meta charset="UTF-8">
+</head>
+<body style="margin:0">
+<canvas id="textrain"></canvas>
+</body>
+<script type="text/javascript">
+    var textrain = document.getElementById('textrain');
+    if (!textrain) {
+        alert('canvas非対応ブラウザです。');
+    }
+    else {
+        var width  = textrain.width  = window.innerWidth;
+        var height = textrain.height = window.innerHeight;
 
-            createScene(engine).then(sceneToRender => {
-                engine.runRenderLoop(() => sceneToRender.render());
+        var records = Array(256);
+        for (var i = 0; i<records.length; i++) {
+            records[i] = 1;
+        }
+
+        var texts  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            texts += "abcdefghijklmnopqrstuvwxyz";
+            texts += "123456789";
+            texts += "@#$%^&*()*&^%";
+
+        var draw = function () {
+            textrain.getContext('2d').fillStyle = 'rgba(0, 0, 0, 0.05)';
+            textrain.getContext('2d').fillRect(0, 0, width, height);
+
+            textrain.getContext('2d').fillStyle = '#0F0';
+            textrain.getContext('2d').font = "12px 'Monaco'";
+
+            records.map(function(y_pos, index){
+                var text = texts[Math.floor(Math.random() * texts.length)];
+
+                x_pos = index * 10;
+
+                textrain.getContext('2d').fillText(text, x_pos, y_pos);
+
+                records[index] = (y_pos > 0 + Math.random() * 1e4) ? 0 : y_pos + 10;
+                console.log(y_pos, index, text);
             });
-            
-            // Watch for browser/canvas resize events
-            window.addEventListener("resize", function () {
-                engine.resize();
-            });
-        </script>
-    </body>
+        };
+        setInterval(draw, 300);
+    }
+
+</script>
 </html>
