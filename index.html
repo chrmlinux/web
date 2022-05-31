@@ -1,23 +1,26 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<title>Analog Clock</title>
-<link rel="stylesheet" href="https://chrmlinux.github.io/web/style.css">
-<script src='index.js'></script>
-</head>
-<body>
-<div class="container">
-  <h1>Analog clock</h1>
-  <div class="edge-clock">
-    <span class="clock-hour"></span>
-    <span class="clock-min"></span>
-    <span class="clock-sec"></span>
-    <span class="clock-12">12</span>
-    <span class="clock-3">3</span>
-    <span class="clock-6">6</span>
-    <span class="clock-9">9</span>
-  </div>
-</div>
-</body>
+<html>
+    <head>
+        <title>Piano in BabylonJS</title>
+        <script src="https://cdn.babylonjs.com/babylon.js"></script>
+        <script src="https://chrmlinux.github.io/web/scene.js"></script>
+        <style>
+            body,#renderCanvas { width: 100%; height: 100%;}
+        </style>
+    </head>
+    <body>
+        <canvas id="renderCanvas"></canvas>
+        <script type="text/javascript">
+            const canvas = document.getElementById("renderCanvas");
+            const engine = new BABYLON.Engine(canvas, true); 
+
+            createScene(engine).then(sceneToRender => {
+                engine.runRenderLoop(() => sceneToRender.render());
+            });
+            
+            // Watch for browser/canvas resize events
+            window.addEventListener("resize", function () {
+                engine.resize();
+            });
+        </script>
+    </body>
 </html>
